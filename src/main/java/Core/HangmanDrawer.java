@@ -48,6 +48,8 @@ public class HangmanDrawer {
             case 10:
                 display(Drawer.TENTH_ATTEMPTH);
                 break;
+            default:
+                throw new IllegalArgumentException("No drawings for attempt: " + attempts);
         }
 
     }

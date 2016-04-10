@@ -19,6 +19,7 @@ public class Hangman {
     public void start() {
         word = new WordGenerator().generate();
         lettersUsed = new ArrayList<>();
+        scanner = new Scanner(System.in);
         initializeDisplayWord();
         hangmanLocal = new HangmanBean();
 
@@ -53,7 +54,7 @@ public class Hangman {
                     indexOfCharacter = word.indexOf(c, indexOfCharacter + 1);
                 }
 
-                if (word.equals(displayWord)) {
+                if (word.equals(displayWord.toString())) {
                     break;
                 }
 

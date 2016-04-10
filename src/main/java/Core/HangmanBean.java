@@ -10,18 +10,16 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class HangmanBean implements HangmanLocal {
+
     @Override
     public String getUserInput(String word, List<String> lettersUsed, Scanner scanner, Locale locale) {
-        if (scanner == null) {
-            scanner = new Scanner(System.in);
-        }
         display(Messages.CHOSEN_CHARACTERS_WORDS, locale, lettersUsed.toString());
         display(Messages.ASK_USER_FOR_INPUT, locale);
-        String input = scanner.next();
+        String input;
 
-        while (!validateInput(word, input, locale)) {
+        do {
             input = scanner.next();
-        }
+        } while (!validateInput(word, input, locale));
 
         return input;
     }

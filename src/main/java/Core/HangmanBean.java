@@ -19,9 +19,9 @@ public class HangmanBean implements HangmanLocal {
 
         do {
             input = scanner.next();
-        } while (!validateInput(word, input, locale));
+        } while (!validateInput(word, input.toLowerCase(), locale));
 
-        return input;
+        return input.toLowerCase();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class HangmanBean implements HangmanLocal {
         if (input.length() != 1 && input.length() != word.length()) {
             errorMessages.add(ErrorMessages.INCORRECT_LENGTH);
         }
-        if (!input.matches("[A-Za-z]+")) {
+        if (!input.matches("[a-z]+")) {
             errorMessages.add(ErrorMessages.INCORRECT_CHARACTERS);
         }
 

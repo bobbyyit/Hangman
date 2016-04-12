@@ -19,7 +19,7 @@ public class HangmanBean implements HangmanLocal {
 
         do {
             input = scanner.next();
-        } while (!validateInput(word, input.toLowerCase(), locale));
+        } while (!validateInputCharacter(word, input.toLowerCase(), locale));
 
         return input.toLowerCase();
     }
@@ -30,7 +30,7 @@ public class HangmanBean implements HangmanLocal {
     }
 
     @Override
-    public boolean validateInput(String word, String input, Locale locale) {
+    public boolean validateInputCharacter(String word, String input, Locale locale) {
         List<ErrorMessages> errorMessages = new ArrayList<>();
         if (input.length() != 1 && input.length() != word.length()) {
             errorMessages.add(ErrorMessages.INCORRECT_LENGTH);

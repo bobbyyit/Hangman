@@ -14,10 +14,12 @@ import static org.junit.Assert.assertThat;
 
 public class HangmanBeanTest {
 
-    HangmanLocal instance;
-    String A_WORD = "aword";
+    private static final String AN_INPUT = "b";
+    private static final String AN_INCORRECT_INPUT = "3E";
+    private static final String A_WORD = "aword";
     @Injectable
     private Scanner scanner;
+    HangmanLocal instance;
 
     @Before
     public void initialize() {
@@ -25,15 +27,47 @@ public class HangmanBeanTest {
     }
 
     @Test
-    public void givenPlayersTurn_WhenAskedForUserInput_ShouldReturnCorrectInput() {
-        final String inputFromUser = "p";
-        new NonStrictExpectations() {{
-            scanner.next();
-            result = inputFromUser;
-        }};
+    public void givenUsersTurn_WhenInputtingCorrectValues_ShouldReturnCorrectInput() {
+        new NonStrictExpectations() {
+            {
+                scanner.next();
+                result = AN_INPUT;
+            }
+        };
 
         String userInput = instance.getUserInput(A_WORD, new ArrayList<>(), scanner, null);
 
-        assertThat(userInput, is("p"));
+        assertThat(userInput, is(AN_INPUT));
+    }
+
+    @Test
+    public void givenUsersTurn_WhenInputtingIncorrectValues_ShouldReturnCorrectInput() {
+        new NonStrictExpectations() {
+            {
+                scanner.next();
+                result = AN_INCORRECT_INPUT;
+
+                scanner.next();
+                result = AN_INPUT;
+            }
+        };
+
+        String userInput = instance.getUserInput(A_WORD, new ArrayList<>(), scanner, null);
+
+        assertThat(userInput, is(AN_INPUT));
+    }
+
+    @Test
+    public void givenInput_WhenValidating_ShouldValidate() {
+        boolean result = instance.validateInputCharacter(A_WORD, AN_INPUT, null);
+
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void givenInput_WhenValidating_ShouldDisplayMessage() {
+        boolean result = instance.validateInputCharacter(A_WORD, AN_INCORRECT_INPUT, null);
+
+        assertThat(result, is(false));
     }
 }

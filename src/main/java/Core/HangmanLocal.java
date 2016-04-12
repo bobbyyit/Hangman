@@ -32,5 +32,5 @@ public interface HangmanLocal {
      * @param locale the locale of user, get appropriate message.
      * @return the validity of given string
      */
-    boolean validateInput(String word, String input, Locale locale);
+    boolean validateInputCharacter(String word, String input, Locale locale);
 }

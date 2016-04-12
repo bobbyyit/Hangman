@@ -32,7 +32,7 @@ public class Hangman {
     }
 
     /**
-     * Verifies if user guessed the word correctly and display appropriate message.
+     * Verify if user guessed the word correctly and display appropriate message.
      */
     private void verifyWord() {
         if (word.equals(displayWord.toString())) {
@@ -83,7 +83,7 @@ public class Hangman {
     }
 
     /**
-     * Formats the mystery word.
+     * Formats the mystery word. Add spaces between underscores
      *
      * @return display separated by spaces.
      */

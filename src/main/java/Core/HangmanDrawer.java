@@ -51,7 +51,6 @@ public class HangmanDrawer {
             default:
                 throw new IllegalArgumentException("No drawings for attempt: " + attempts);
         }
-
     }
 
     public void display(Drawer drawer) {

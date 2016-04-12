@@ -1,11 +1,13 @@
 package Core;
 
+import mockit.NonStrictExpectations;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+
+import mockit.Injectable;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -14,6 +16,8 @@ public class HangmanBeanTest {
 
     HangmanLocal instance;
     String A_WORD = "aword";
+    @Injectable
+    private Scanner scanner;
 
     @Before
     public void initialize() {
@@ -22,12 +26,14 @@ public class HangmanBeanTest {
 
     @Test
     public void givenPlayersTurn_WhenAskedForUserInput_ShouldReturnCorrectInput() {
-        List<String> lettersUsed = new ArrayList<>();
-//        instance.getUserInput(A_WORD, lettersUsed, null, );
-        ArrayList<Integer> actual = new ArrayList<>();
-        ArrayList<Integer> expected = new ArrayList<>();
-        actual.add(1);
-        expected.add(1);
-        assertThat(actual, is(expected));
+        final String inputFromUser = "p";
+        new NonStrictExpectations() {{
+            scanner.next();
+            result = inputFromUser;
+        }};
+
+        String userInput = instance.getUserInput(A_WORD, new ArrayList<>(), scanner, null);
+
+        assertThat(userInput, is("p"));
     }
 }

@@ -50,7 +50,7 @@ public class Hangman {
         int attempts = 1;
         hangmanLocal.display(Messages.BEGIN_GAME, locale);
         HangmanDrawer.getInstance().display(Drawer.ZERO_ATTEMPT);
-        hangmanLocal.display(Messages.CORRECT_CHARACTER, locale, displayWord.toString().replaceAll("", " "));
+        hangmanLocal.display(Messages.CORRECT_CHARACTER, locale, getPrettyDisplayWord());
         while (attempts <= ATTEMPTS_ALLOWED) {
             hangmanLocal.display(Messages.ATTEMPTS, locale, attempts);
             String userInput = hangmanLocal.getUserInput(word, lettersUsed, scanner, locale);

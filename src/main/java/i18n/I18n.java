@@ -3,8 +3,7 @@ package i18n;
 import Constants.ErrorMessages;
 import Constants.Messages;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class I18n {
 
@@ -46,5 +45,18 @@ public class I18n {
             resourceBundleName = "error_messages.";
         }
         return resourceBundleName;
+    }
+
+    public static Map<String, String> getAllTexts(BundleName bundle, Locale locale) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(bundle.getName());
+        Enumeration<String> keys = resourceBundle.getKeys();
+        Map<String, String> keyValues = new HashMap<>();
+
+        while (keys.hasMoreElements()) {
+            String key = keys.nextElement();
+            keyValues.put(key, resourceBundle.getString(key));
+        }
+
+        return keyValues;
     }
 }

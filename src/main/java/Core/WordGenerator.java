@@ -6,6 +6,11 @@ public class WordGenerator {
     private static int MINIMUM = 0;
     private static int MAXIMUM = wordArray().length;
 
+    /**
+     * Generates a random word.
+     *
+     * @return a random word.
+     */
     public static String generate() {
         Random rn = new Random();
         int randomNumber = rn.nextInt(MAXIMUM - MINIMUM + 1);

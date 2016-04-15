@@ -23,9 +23,9 @@ public class Hangman {
     public void start() {
         word = new WordGenerator().generate();
         lettersUsed = new ArrayList<>();
-        scanner = new Scanner(System.in);
+        scanner = BeanFactory.getScanner();
         initializeDisplayWord();
-        hangmanLocal = new HangmanBean();
+        hangmanLocal = BeanFactory.getHangmanBean();
 
         begin();
         verifyWord();

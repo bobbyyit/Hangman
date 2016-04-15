@@ -47,7 +47,7 @@ public class I18n {
         return resourceBundleName;
     }
 
-    public static Map<String, String> getAllTexts(BundleName bundle, Locale locale) {
+    public static Map<String, String> getAllTexts(BundleName bundle) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle(bundle.getName());
         Enumeration<String> keys = resourceBundle.getKeys();
         Map<String, String> keyValues = new HashMap<>();

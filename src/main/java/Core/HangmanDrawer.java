@@ -4,17 +4,14 @@ import Constants.Drawer;
 
 public class HangmanDrawer {
 
-    private static HangmanDrawer instance = null;
+    private static HangmanDrawer instance = new HangmanDrawer();
 
     public static HangmanDrawer getInstance() {
-        if (instance == null) {
-            instance = new HangmanDrawer();
-        }
         return instance;
     }
 
-    public void draw(int attempts) {
-        switch (attempts) {
+    public void draw(int attempt) {
+        switch (attempt) {
             case 0:
                 display(Drawer.ZERO_ATTEMPT);
                 break;
@@ -49,7 +46,7 @@ public class HangmanDrawer {
                 display(Drawer.TENTH_ATTEMPTH);
                 break;
             default:
-                throw new IllegalArgumentException("No drawings for attempt: " + attempts);
+                throw new IllegalArgumentException("No drawings for attempt: " + attempt);
         }
     }
 

@@ -3,10 +3,24 @@ package i18n;
 import Constants.ErrorMessages;
 import Constants.Messages;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
+
 
 public class I18n {
 
+    /**
+     * Gets the message in different languages. If no locale is specified, it will automatically use English as a
+     * locale and will retrieve the message in English.
+     *
+     * @param enumValue        the enum.
+     * @param locale           the locale.
+     * @param stringsToReplace optional message to insert in the message.
+     * @return
+     */
     public static String getLocalizedLabelFallbackEnglish(Enum enumValue, Locale locale, Object... stringsToReplace) {
         String message;
         BundleName resourceBundleName = getBundleName(enumValue);
@@ -21,8 +35,16 @@ public class I18n {
         return String.format(message, stringsToReplace);
     }
 
-    private static String getText(BundleName resourceBundleName, Locale locale, String key) {
-        ResourceBundle bundleResource = ResourceBundle.getBundle(resourceBundleName.getName(), locale);
+    /**
+     * Gets the text.
+     *
+     * @param bundle the bundle
+     * @param locale the locale
+     * @param key    key of the resource file
+     * @return
+     */
+    private static String getText(BundleName bundle, Locale locale, String key) {
+        ResourceBundle bundleResource = ResourceBundle.getBundle(bundle.getName(), locale);
         String message = bundleResource.getString(key);
         return message;
     }
@@ -47,6 +69,12 @@ public class I18n {
         return resourceBundleName;
     }
 
+    /**
+     * For testing purposes only.
+     *
+     * @param bundle
+     * @return
+     */
     public static Map<String, String> getAllTexts(BundleName bundle) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle(bundle.getName());
         Enumeration<String> keys = resourceBundle.getKeys();

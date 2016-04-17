@@ -3,15 +3,20 @@ package Core;
 import java.util.Random;
 
 public class WordGenerator {
+    private static WordGenerator wordGenerator = new WordGenerator();
     private static int MINIMUM = 0;
     private static int MAXIMUM = wordArray().length;
+
+    public static WordGenerator getInstance() {
+        return wordGenerator;
+    }
 
     /**
      * Generates a random word.
      *
      * @return a random word.
      */
-    public static String generate() {
+    public static String generateWord() {
         Random rn = new Random();
         int randomNumber = rn.nextInt(MAXIMUM - MINIMUM + 1);
         return wordArray()[randomNumber];

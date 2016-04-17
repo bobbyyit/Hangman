@@ -1,6 +1,11 @@
 package Constants;
 
 public enum Messages {
+
+    /**
+     * The messages is only used as a quick reference, the message used is located in the resource folder.
+     * Be sure to update the resource files if any new messages are added.
+     */
     BEGIN_GAME("You have 10 tries to guess the mystery word, you can guess a letter or the whole word. Good luck!"),
     ASK_USER_FOR_INPUT("Enter a letter or word:"),
     YOU_WIN("You figured out the word. Congratulations, You win!"),
@@ -16,5 +21,4 @@ public enum Messages {
     Messages(String message) {
         this.message = message;
     }
-
 }

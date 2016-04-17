@@ -3,7 +3,11 @@ package Core;
 import Constants.Drawer;
 import Constants.Messages;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class Hangman {
     private final int ATTEMPTS_ALLOWED = 10;
@@ -18,7 +22,7 @@ public class Hangman {
      * Initialize the variables.
      */
     public void start() {
-        word = new WordGenerator().generate();
+        word = WordGenerator.getInstance().generateWord();
         lettersUsed = new ArrayList<>();
         scanner = BeanFactory.getScanner();
         initializeDisplayWord();
@@ -26,18 +30,6 @@ public class Hangman {
 
         begin();
         verifyWord();
-    }
-
-    /**
-     * Verify if user guessed the word correctly and display appropriate message.
-     */
-    private void verifyWord() {
-        if (word.equals(displayWord.toString())) {
-            HangmanDrawer.getInstance().display(Drawer.WINNER);
-            hangmanLocal.display(Messages.YOU_WIN, locale);
-        } else {
-            hangmanLocal.display(Messages.YOU_LOSE, locale);
-        }
     }
 
     /**
@@ -109,6 +101,18 @@ public class Hangman {
         displayWord = new StringBuilder();
         for (int i = 0; i < word.length(); i++) {
             displayWord.append("_");
+        }
+    }
+
+    /**
+     * Verify if user guessed the word correctly and display appropriate message.
+     */
+    private void verifyWord() {
+        if (word.equals(displayWord.toString())) {
+            HangmanDrawer.getInstance().display(Drawer.WINNER);
+            hangmanLocal.display(Messages.YOU_WIN, locale);
+        } else {
+            hangmanLocal.display(Messages.YOU_LOSE, locale);
         }
     }
 }

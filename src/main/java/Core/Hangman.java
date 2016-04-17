@@ -3,13 +3,10 @@ package Core;
 import Constants.Drawer;
 import Constants.Messages;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class Hangman {
-    private static final int ATTEMPTS_ALLOWED = 10;
+    private final int ATTEMPTS_ALLOWED = 10;
     private String word;
     private List<String> lettersUsed;
     private StringBuilder displayWord;
@@ -74,9 +71,13 @@ public class Hangman {
             } else if (wordGuessedCorrectly) {
                 break;
             } else {
+                if (Collections.frequency(lettersUsed, userInput) == 1) {
+                    hangmanLocal.display(Messages.USER_INPUT_ALREADY_PICKED, locale);
+                } else {
+                    HangmanDrawer.getInstance().draw(attempts);
+                    attempts++;
+                }
                 lettersUsed.add(userInput);
-                HangmanDrawer.getInstance().draw(attempts);
-                attempts++;
                 hangmanLocal.display(Messages.INCORRECT_CHARACTER, locale, getPrettyDisplayWord());
             }
         }

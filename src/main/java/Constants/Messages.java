@@ -8,7 +8,8 @@ public enum Messages {
     CORRECT_CHARACTER("Progress: %s"),
     INCORRECT_CHARACTER("Try again, Progress: %s"),
     CHOSEN_CHARACTERS_WORDS("Chosen letter/words: %s"),
-    ATTEMPTS("Attempts: %s");
+    ATTEMPTS("Attempt: %s"),
+    USER_INPUT_ALREADY_PICKED("You already chose this letter/word.");
 
     String message;
 
